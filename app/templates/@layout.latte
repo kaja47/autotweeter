@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="autotweeter">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>autotweeter</title>
+
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/screen.css" type="text/css">
+	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+  <style>
+    html { font: .9em/1.5 sans-serif; border-top: 2em solid #F4EBDB; }
+    body { font: inherit; border-top: 5px solid #E4DED5; margin: 0; background: white; color: #111; }
+    #wrapper { max-width: 670px; margin: -2em auto 0; }
+    #footer { margin-top: 1em; padding-top: .5em; font-size: .8em; border-top: 1px solid #E4DED5; }
+    h1 { font-size: 2em; color: #3484D2; padding-top: .5em; }
+    h2, h3 { font-size: 1.5em; color: #444; margin: .6em 0; }
+    h3 { font-size: 16px; color: #3484D2; }
+    ol { margin: 0; padding: 0; } 
+    ol li { margin: 1em 0; } 
+    ol li p { font-size: 90%; }
+    hr { visibility: hidden; height: 2em; }
+    img { border: none; }
+    a { color: #3484D2; padding: 3px 4px; margin: -3px -4px; font-weight: bold; }
+    a:hover, a:active, a:focus { background-color: #3484D2; text-decoration: none; color: white; }
+    table { border-collapse: collapse; font-size: .9em; }
+    td { padding: .2em .5em;  border: 1px solid #7A7772; }
+    form td { border: none; }
+    form { display: inline; }
+    textarea { width: 650px; }
+  </style>
+	{block head}{/block}
+</head>
+
+<body>
+<div id="wrapper">
+
+  <div style="text-align: right;">
+    {if $user->loggedIn}
+      <strong>@{$user->identity->name}</strong> |
+      <a n:href="Homepage:logout">odhlásit</a>
+    {else}
+      <a n:href="Sign:twitterLogin">přihlásit se přes twitter</a>
+    {/if} 
+  </div>
+
+	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+
+	<h1>autotweeter</h1>
+
+	{include #content}
+
+  <div id="footer">
+    Za čtvrt hodiny vytvořil <a href="http://twitter.com/kaja47">@kaja47</a>
+  </div>
+</div>
+</body>
+</html>

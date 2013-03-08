@@ -1,0 +1,35 @@
+{block content}
+
+
+{if $user->loggedIn}
+
+  {*control addTweets*}
+
+  {form addTweets}
+    {input tweets}
+    {input send}
+  {/form}
+
+<br />
+<small>
+  Jeden tweet na řádek. Tweety zadávejte v některém z nálsedujících formátů: <br />
+<pre>2013-12-31 12:00 text tweetu
++1 day text tweetu
+tomorrow text tweetu</pre>
+</small>
+
+  <h2>fronta</h2>
+
+  {foreach $queue as $t}
+    <div style="color: #666; font-size: 0.9em;">{$t->date|date:"d. m. Y h:i"} <a style="float: right; font-size: 0.8em;" n:href="deleteTweet $t->id">smazat</a></div>
+    <div style="padding-bottom: 0.5em"> {$t->text} </div>
+  {/foreach}
+  
+{else}
+
+  <h2>Je posílání tweetů příliš namáhavé? Zautomatizujte to!</h2>
+  
+{/if}
+
+
+{/block}

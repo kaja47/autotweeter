@@ -1,0 +1,39 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+common:
+	database:
+		driver: mysql
+		host: localhost
+		database: <database>
+		username: <username>
+		password: <password>
+		charset: utf8
+
+	php:
+		date.timezone: Europe/Prague
+		# session.save_path: "%tempDir%/sessions"
+		# zlib.output_compression: yes
+
+	twitterKey: <yourApiKey>
+	twitterSecret: <yourApiSecret>
+
+	services:
+		robotLoader:
+			run: true
+
+		model:
+			class: Model
+
+		authenticator:
+			class: Authenticator
+			arguments: [@model]
+
+production < common:
+
+development < common:
+
+console < common:
